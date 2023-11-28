@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.example.demo.domain.Demo;
 import com.example.demo.dto.DemoDto;
-import com.example.demo.mapper.DemoMapper;
 import com.example.demo.service.DemoService;
 
 @RestController
@@ -24,10 +23,7 @@ import com.example.demo.service.DemoService;
 public class DemoController {
 	
 	@Autowired
-	public DemoService demoService;
-	
-	@Autowired
-	public DemoMapper mapper;
+	public DemoService demoService;	
 	
 	private Logger logger = LoggerFactory.getLogger(DemoController.class);
 	
@@ -52,21 +48,22 @@ public class DemoController {
 	
 	@PostMapping("/create")
 	public ResponseEntity<Demo> createDemo(@RequestBody DemoDto demoDto){
-		Demo demo = mapper.mapToDemo(demoDto);
-		Demo demo1 = demoService.createDemo(demo);
-		return ResponseEntity.status(HttpStatus.CREATED).body(demo1);
+		Demo demo = demoService.createDemo(demoDto);
+		logger.info("Controller Demo ID Saved with Mapper:- "+demo.getId());
+		return ResponseEntity.status(HttpStatus.CREATED).body(demo);
 	}
 	
 	@GetMapping("/get/{id}")	
-	public ResponseEntity<DemoDto> getCreateDemoById(@PathVariable Integer id){
-		DemoDto demo1 = mapper.mapToDemoDto(demoService.getDemoByID(id));
-	    logger.info("Controller Demo ID:- "+id);
-		return ResponseEntity.ok(demo1);
+	public ResponseEntity<DemoDto> getCreateDemoById(@PathVariable Integer id){	    
+	    DemoDto demoDto = demoService.getDemoMapperByID(id);
+	    logger.info("Controller Demo ID:- "+demoDto.getId());
+		return ResponseEntity.ok(demoDto);
 	}
 	
 	@GetMapping("/get")
-	public ResponseEntity<List<DemoDto>> getDemos() {
-		List<DemoDto> demoList = mapper.mapToDemoDtos(demoService.getDemo());
+	public ResponseEntity<List<DemoDto>> getDemos() {		
+		List<DemoDto> demoList = demoService.getAllMapperDemo();
+		logger.info("Controller Get All Demo IDs ");
 		return ResponseEntity.ok(demoList);
 	}
 
