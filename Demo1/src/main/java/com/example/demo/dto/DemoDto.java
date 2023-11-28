@@ -1,22 +1,22 @@
 package com.example.demo.dto;
 
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 @Getter
 @Setter
+@NoArgsConstructor
+@AllArgsConstructor
 public class DemoDto {
 
-	@JsonProperty("id")
     private int id;
 
-    @JsonProperty("firstname")
     private String firstname;
 
-    @JsonProperty("lastname")
     private String lastname;
    
 	

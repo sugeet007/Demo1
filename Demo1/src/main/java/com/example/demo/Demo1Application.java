@@ -4,7 +4,7 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 /*
- * This application is working application for authentication with JWTToken
+ * This application is working application for Demo1
  * Created by Sugeet Patel
  */
 
