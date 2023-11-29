@@ -3,13 +3,21 @@ package com.example.demo.domain;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.NotFound;
+import org.hibernate.annotations.NotFoundAction;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+/*
+ * Created by Sugeet Patel
+ */
 
 @Getter
 @Setter
@@ -29,32 +37,11 @@ public class Demo {
 	
 	@Column(name = "lastname")
 	private String lastname;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
-
-	public String getFirstname() {
-		return firstname;
-	}
-
-	public void setFirstname(String firstname) {
-		this.firstname = firstname;
-	}
-
-	public String getLastname() {
-		return lastname;
-	}
-
-	public void setLastname(String lastname) {
-		this.lastname = lastname;
-	}
 	
-	
+		
+	@OneToOne
+	@NotFound(action = NotFoundAction.IGNORE)
+	private Address address;	
 	
 
 }

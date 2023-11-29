@@ -6,6 +6,10 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.example.demo.payload.ApiResponse;
 
+/*
+ * Created by Sugeet Patel
+ */
+
 public class GlobalExceptionHandler {
 	
 	@ExceptionHandler(ResourceNotFoundException.class)
